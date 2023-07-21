@@ -53,7 +53,7 @@ dim(Y)
 sd(Y)
 
 n = length(Y)
-trainIndex=sample(1:n, size = round(0.8*n), replace=FALSE)
+trainIndex=sample(1:n, size = round(0.9*n), replace=FALSE)
 Ytrain=Y[, trainIndex, drop = FALSE ]
 Ytest=Y[, -trainIndex, drop = FALSE ]
 sd(Ytest)
@@ -81,7 +81,7 @@ part=rep(m,p) # partition
 # lasso 
 # in order to see all figures after the run, use the "previous plot" arrow on Rstudio
 results=MFSGrp(Ytrain,Xtrain,basisno=m,tt, part=part,Xpred=Xtest,
-               Ypred=Ytest, Penalty = "gelast", sixplotnum="max",forcezero =F, bspline = F)
+               Ypred=Ytest, Penalty = "gelast", sixplotnum="max",forcezero =T, bspline = F)
 sqrt(results$MSEpredict)  # test Root MSE
 sum(results$coef==0)/m    # number of zero functional coefficients
 #results$lambda # the regularized lambda
