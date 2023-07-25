@@ -1,0 +1,10 @@
+"","Structure","Abbreviation","Hemisphere","Level_1","Level_2","Level_3","Level_4","Subdivisions_7","index","index2","clusfound","Subdivisions_7_nowm"
+"1","Parietal_Cortex_Posterior_Area_Rostral_Part","PtPR","Left","1_forebrain","1_secondary_prosencephalon","1_isocortex","12_parietal_cortex","1_isocortex",23,23,0,"1_isocortex"
+"2","Rostral_Linear_Nucleus","RI","Left","2_midbrain","m1","m1","2_midbrain_tegmentum","5_midbrain",86,86,0,"5_midbrain"
+"3","Longitudinal_Fasciculus_of_Pons","lfp","Left","4_white_matter_tracts","hindbrain_white_matter","axial_hindbrain_white_matter","white_matter","7_whitematter",139,139,0,"6_hindbrain"
+"4","Dorsal_Acustic_Stria","das","Left","4_white_matter_tracts","pontine_hindbrain","axial_hindbrain_white_matter","white_matter","7_whitematter",150,150,0,"6_hindbrain"
+"5","Parietal_Cortex_Posterior_Area_Rostral_Part","PtPR","Right","1_forebrain","1_secondary_prosencephalon","1_isocortex","12_parietal_cortex","1_isocortex",189,1023,0,"1_isocortex"
+"6","Tegmental_Nucleus","Tg","Right","3_hindbrain","2_pontine_hindbrain","r1","1_pons","6_hindbrain",274,1108,0,"6_hindbrain"
+"7","Mamillothalamic_Tract","mt","Right","4_white_matter_tracts","forebrain_white_matter","diencephalon_white_matter","white_matter","7_whitematter",296,1130,0,"7_whitematter"
+"8","Dorsal_Acustic_Stria","das","Right","4_white_matter_tracts","pontine_hindbrain","axial_hindbrain_white_matter","white_matter","7_whitematter",316,1150,0,"7_whitematter"
+"9","TotalBrain","Brain","Bilateral",NA,NA,NA,NA,NA,333,NA,0,NA

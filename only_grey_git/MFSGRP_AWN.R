@@ -14,7 +14,7 @@ ts_names = gsub('ts_','',ts_namesorig)
 ts_names = gsub('.csv','',ts_names)
 which(ts_names [33] == datatemp$ARunno )
 
-nt=60
+nt=160
 tstart=30
 tend= tstart + nt-1
 
@@ -51,7 +51,14 @@ X = X[, !is.na(index_match ) ,,drop=T]
 
 atlas_path= '/Users/ali/Desktop/Jul23/fmri_jayvik/codes/only_gray/new_atlas.csv'
 new_atlas = read.csv(atlas_path)
-grey_index = !new_atlas$Level_4 == "white_matter"
+
+sum(grepl("Ventricle", new_atlas$Structure, fixed = TRUE)) 
+sum(new_atlas$Subdivisions_7 =="8_CSF")
+
+grey_index = !new_atlas$Level_4 == "white_matter" & !grepl("Ventricle", new_atlas$Structure, fixed = TRUE) & !new_atlas$Subdivisions_7 =="8_CSF"
+sum(grey_index)
+
+new_atlas = new_atlas[grey_index, ]
 
 X = X[grey_index, , , drop=T]
 
@@ -77,7 +84,7 @@ tt=(1:nt)/nt
 
 par(mfrow=c(3,3))
 for(j in 1:9){
-  plot(tt,Xtrain[j,1,],type='l', ylim=c(-30,30), main=paste0("j=",j))
+  plot(tt,Xtrain[j,1,],type='l', ylim=c(-5,5), main=paste0("j=",j))
   for(k in 2:10)lines(tt, Xtrain[j,k,])
 }
 
@@ -97,10 +104,23 @@ part=rep(m,p) # partition
 # lasso 
 # in order to see all figures after the run, use the "previous plot" arrow on Rstudio
 results=MFSGrp(Ytrain,Xtrain,basisno=m,tt, part=part,Xpred=Xtest,
-               Ypred=Ytest, Penalty = "gelast", sixplotnum="max",forcezero =F, bspline = T,
-               eps = 1e-08,
+               Ypred=Ytest, Penalty = "gelast", sixplotnum="max",forcezero =F, bspline = F,
+               eps = 1e-08, 
                maxit = 3e+08)
 sqrt(results$MSEpredict)  # test Root MSE
 sum(results$coef==0)/m    # number of zero functional coefficients
 #results$lambda # the regularized lambda
+
+View(new_atlas) # for interpretations
+
+
+
+# TIME SERIES OF RESUTS:
+colors= colorspace::qualitative_hcl(7, palette = "Dark 3")
+par(mfrow=c(2,12))
+for(j in c(18,55,70,88,94,99,100,102,105,118,120,135,147,186,212,214,222,224,228,230,237,247,252)){
+  plot(tt,Xtrain[j,1,],type='l', ylim=c(-10,10), main=paste0("j=",j) , col = colors)
+  for(k in 2:9)lines(tt, Xtrain[j,k,],  col = colors[k])
+}
+
 
